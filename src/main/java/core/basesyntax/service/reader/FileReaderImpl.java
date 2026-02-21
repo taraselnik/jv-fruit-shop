@@ -1,4 +1,4 @@
-package core.basesyntax.service.dataReader;
+package core.basesyntax.service.reader;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

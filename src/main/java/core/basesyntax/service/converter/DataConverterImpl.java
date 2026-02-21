@@ -1,4 +1,4 @@
-package core.basesyntax.service.dataConverter;
+package core.basesyntax.service.converter;
 
 import core.basesyntax.model.transaction.FruitTransaction;
 
