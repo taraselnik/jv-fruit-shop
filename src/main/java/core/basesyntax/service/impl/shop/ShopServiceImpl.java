@@ -1,7 +1,8 @@
-package core.basesyntax.service.shop;
+package core.basesyntax.service.impl.shop;
 
 import core.basesyntax.dao.FruitDao;
 import core.basesyntax.model.transaction.FruitTransaction;
+import core.basesyntax.service.ShopService;
 import core.basesyntax.strategy.OperationStrategy;
 import core.basesyntax.strategy.handler.OperationHandler;
 import java.math.BigDecimal;

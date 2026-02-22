@@ -1,4 +1,4 @@
-package core.basesyntax.service.report;
+package core.basesyntax.service;
 
 import core.basesyntax.dao.FruitDao;
 

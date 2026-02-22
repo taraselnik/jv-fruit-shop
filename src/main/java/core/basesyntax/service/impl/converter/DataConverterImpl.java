@@ -1,6 +1,7 @@
-package core.basesyntax.service.converter;
+package core.basesyntax.service.impl.converter;
 
 import core.basesyntax.model.transaction.FruitTransaction;
+import core.basesyntax.service.DataConverter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

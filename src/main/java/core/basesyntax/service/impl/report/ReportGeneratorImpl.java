@@ -1,6 +1,7 @@
-package core.basesyntax.service.report;
+package core.basesyntax.service.impl.report;
 
 import core.basesyntax.dao.FruitDao;
+import core.basesyntax.service.ReportGenerator;
 import java.util.stream.Collectors;
 
 public class ReportGeneratorImpl implements ReportGenerator {
@@ -11,7 +12,7 @@ public class ReportGeneratorImpl implements ReportGenerator {
             throw new IllegalArgumentException("FruitDao can't be null");
         }
         String reportHeader = "fruit,quantity\n";
-        String reportBody = "";
+        String reportBody;
         reportBody = fruitDao.getAll().entrySet().stream()
                 .map(entry -> entry.getKey() + "," + entry.getValue())
                 .collect(Collectors.joining("\n"));

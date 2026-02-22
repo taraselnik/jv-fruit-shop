@@ -1,7 +1,7 @@
-package core.basesyntax.service.writer;
+package core.basesyntax.service.impl.writer;
 
+import core.basesyntax.service.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -14,7 +14,7 @@ public class FileWriterImpl implements FileWriter {
         try {
             Path path = Path.of(filePath);
             Files.createDirectories(path.getParent());
-            Files.write(path, data.getBytes(StandardCharsets.UTF_8));
+            Files.writeString(path, data);
         } catch (IOException e) {
             throw new RuntimeException("Can't write file: " + filePath, e);
         }

@@ -1,5 +1,6 @@
-package core.basesyntax.service.reader;
+package core.basesyntax.service.impl.reader;
 
+import core.basesyntax.service.DataReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
