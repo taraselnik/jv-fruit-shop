@@ -1,6 +1,6 @@
-package core.basesyntax.model.operations.strategy;
+package core.basesyntax.strategy;
 
-import core.basesyntax.model.operations.handler.OperationHandler;
+import core.basesyntax.strategy.handler.OperationHandler;
 import core.basesyntax.model.transaction.FruitTransaction;
 
 public interface OperationStrategy {
