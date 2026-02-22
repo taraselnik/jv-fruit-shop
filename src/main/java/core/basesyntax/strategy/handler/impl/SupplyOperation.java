@@ -1,7 +1,6 @@
 package core.basesyntax.strategy.handler.impl;
 
 import core.basesyntax.strategy.handler.OperationHandler;
-
 import java.math.BigDecimal;
 
 public class SupplyOperation implements OperationHandler {
