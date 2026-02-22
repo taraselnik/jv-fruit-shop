@@ -2,6 +2,7 @@ package core.basesyntax.service.converter;
 
 import core.basesyntax.model.transaction.FruitTransaction;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class DataConverterImpl implements DataConverter {
 
       FruitTransaction.Operation operation = parseOperation(parts[0].trim());
       String fruit = parts[1].trim();
-      int quantity = 0;
+      BigDecimal quantity;
       try {
-        quantity = Integer.parseInt(parts[2].trim());
+        quantity = BigDecimal.valueOf(Long.parseLong(parts[2].trim()));
       } catch (NumberFormatException e) {
         throw new RuntimeException("Invalid quantity: " + parts[2], e);
       }

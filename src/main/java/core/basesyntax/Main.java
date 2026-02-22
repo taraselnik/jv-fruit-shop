@@ -1,5 +1,9 @@
 package core.basesyntax;
 
+import core.basesyntax.dao.FruitDao;
+import core.basesyntax.dao.FruitDaoImpl;
+import core.basesyntax.db.Storage;
+import core.basesyntax.db.StorageImpl;
 import core.basesyntax.model.operations.handler.BalanceOperation;
 import core.basesyntax.model.operations.handler.OperationHandler;
 import core.basesyntax.model.operations.handler.PurchaseOperation;
@@ -45,7 +49,9 @@ public class Main {
 
     // 4. Process the incoming transactions with applicable OperationHandler implementations
     ShopService shopService = new ShopServiceImpl(operationStrategy);
-    shopService.process(transactions);
+    Storage storage = new StorageImpl();
+    FruitDao fruitDao = new FruitDaoImpl(storage);
+    shopService.process(transactions, fruitDao);
 //
 //    // 5.Generate report based on the current Storage state
 //    ReportGenerator reportGenerator = new ReportGeneratorImpl();
