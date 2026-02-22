@@ -1,30 +1,28 @@
 package core.basesyntax.model.transaction;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class FruitTransaction {
-
     private final Operation operation;
     private final String fruit;
     private final int quantity;
 
     public FruitTransaction(Operation operation, String fruit, int quantity) {
-      if (fruit == null || fruit.isBlank()) {
-        throw new IllegalArgumentException("Fruit can't be null");
-      }
+        if (fruit == null || fruit.isBlank()) {
+            throw new IllegalArgumentException("Fruit can't be null");
+        }
 
-      if (operation == null) {
-        throw new IllegalArgumentException("Operation can't be null");
-      }
+        if (operation == null) {
+            throw new IllegalArgumentException("Operation can't be null");
+        }
 
-      if (quantity < 0) {
-        throw new IllegalArgumentException("Quantity can't be negative");
-      }
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity can't be negative");
+        }
 
-      this.operation = operation;
-      this.fruit = fruit;
-      this.quantity = quantity;
+        this.operation = operation;
+        this.fruit = fruit;
+        this.quantity = quantity;
     }
 
     public Operation getOperation() {

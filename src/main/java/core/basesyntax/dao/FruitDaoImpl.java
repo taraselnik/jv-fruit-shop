@@ -15,9 +15,9 @@ public class FruitDaoImpl implements FruitDao {
 
     @Override
     public void update(String fruit, String quantity) {
-      if (fruit == null || quantity == null) {
-        throw new IllegalArgumentException("Fruit or quantity can't be null");
-      }
+        if (fruit == null || quantity == null) {
+            throw new IllegalArgumentException("Fruit or quantity can't be null");
+        }
         storage.update(fruit, quantity);
     }
 
@@ -28,9 +28,9 @@ public class FruitDaoImpl implements FruitDao {
 
     @Override
     public String getQuantity(String key) {
-      if (key == null) {
-        throw new IllegalArgumentException("Key can't be null");
-      }
-      return storage.get(key);
+        if (key == null) {
+            throw new IllegalArgumentException("Key can't be null");
+        }
+        return storage.get(key);
     }
 }

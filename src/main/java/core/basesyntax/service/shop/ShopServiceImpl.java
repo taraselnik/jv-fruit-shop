@@ -20,47 +20,47 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public void process(List<FruitTransaction> transactions, FruitDao fruitDao) {
-      if (transactions == null) {
-        throw new IllegalArgumentException("Transactions can't be null");
-      }
-      if (fruitDao == null) {
-        throw new IllegalArgumentException("FruitDao can't be null");
-      }
-      for (FruitTransaction transaction : transactions) {
-        if (transaction == null) {
-          continue;
+        if (transactions == null) {
+            throw new IllegalArgumentException("Transactions can't be null");
         }
-        String fruit = transaction.getFruit();
-        String storedQuantityStr = fruitDao.getQuantity(fruit);
-        BigDecimal storedQuantity;
-        if (storedQuantityStr == null) {
-          storedQuantity = BigDecimal.ZERO;
-        } else {
-          try {
-            storedQuantity = new BigDecimal(storedQuantityStr);
-          } catch (NumberFormatException e) {
-            throw new RuntimeException("Invalid quantity: " + storedQuantityStr, e);
-          }
+        if (fruitDao == null) {
+            throw new IllegalArgumentException("FruitDao can't be null");
         }
+        for (FruitTransaction transaction : transactions) {
+            if (transaction == null) {
+                continue;
+            }
+            String fruit = transaction.getFruit();
+            String storedQuantityStr = fruitDao.getQuantity(fruit);
+            BigDecimal storedQuantity;
+            if (storedQuantityStr == null) {
+                storedQuantity = BigDecimal.ZERO;
+            } else {
+                try {
+                    storedQuantity = new BigDecimal(storedQuantityStr);
+                } catch (NumberFormatException e) {
+                    throw new RuntimeException("Invalid quantity: " + storedQuantityStr, e);
+                }
+            }
 
-        OperationHandler handler = operationStrategy.getOperationHandler(
-                transaction.getOperation());
-        try {
-          String newQuantity = handler.apply(
-                  storedQuantity,
-                  BigDecimal.valueOf(transaction.getQuantity())
-          );
-          fruitDao.update(fruit, newQuantity);
-        } catch (RuntimeException e) {
-          throw new RuntimeException(
-                  "Failed to process transaction: operation=" + transaction.getOperation()
-                          + ", fruit=" + transaction.getFruit()
-                          + ", quantity=" + transaction.getQuantity()
-                          + ", storedQuantity=" + storedQuantity
-                          + ", handler=" + handler.getClass().getSimpleName(),
-                  e
-          );
+            OperationHandler handler = operationStrategy.getOperationHandler(
+                    transaction.getOperation());
+            try {
+                String newQuantity = handler.apply(
+                        storedQuantity,
+                        BigDecimal.valueOf(transaction.getQuantity())
+                );
+                fruitDao.update(fruit, newQuantity);
+            } catch (RuntimeException e) {
+                throw new RuntimeException(
+                        "Failed to process transaction: operation=" + transaction.getOperation()
+                                + ", fruit=" + transaction.getFruit()
+                                + ", quantity=" + transaction.getQuantity()
+                                + ", storedQuantity=" + storedQuantity
+                                + ", handler=" + handler.getClass().getSimpleName(),
+                        e
+                );
+            }
         }
-      }
     }
 }
