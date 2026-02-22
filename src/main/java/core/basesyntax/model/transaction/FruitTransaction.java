@@ -7,12 +7,24 @@ public class FruitTransaction {
 
     private final Operation operation;
     private final String fruit;
-    private final BigDecimal quantity;
+    private final int quantity;
 
-    public FruitTransaction(Operation operation, String fruit, BigDecimal quantity) {
-        this.operation = operation;
-        this.fruit = fruit;
-        this.quantity = quantity;
+    public FruitTransaction(Operation operation, String fruit, int quantity) {
+      if (fruit == null || fruit.isBlank()) {
+        throw new IllegalArgumentException("Fruit can't be null");
+      }
+
+      if (operation == null) {
+        throw new IllegalArgumentException("Operation can't be null");
+      }
+
+      if (quantity < 0) {
+        throw new IllegalArgumentException("Quantity can't be negative");
+      }
+
+      this.operation = operation;
+      this.fruit = fruit;
+      this.quantity = quantity;
     }
 
     public Operation getOperation() {
@@ -23,7 +35,7 @@ public class FruitTransaction {
         return fruit;
     }
 
-    public BigDecimal getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 

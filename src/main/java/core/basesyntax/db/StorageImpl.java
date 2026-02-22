@@ -8,11 +8,17 @@ public class StorageImpl implements Storage {
 
     @Override
     public boolean update(String fruit, String quantity) {
-        return storage.put(fruit, quantity) != null;
+        String result = storage.put(fruit, quantity);
+        return result != null && result.equals(quantity);
     }
 
     @Override
-    public Map<String, String> getAll() {
-        return storage;
+    public Map<String, String> snapshot() {
+        return Map.copyOf(storage);
+    }
+
+    @Override
+    public String get(String key) {
+        return storage.get(key);
     }
 }

@@ -31,12 +31,12 @@ public class DataConverterImpl implements DataConverter {
             String fruit = parts[1].trim();
             BigDecimal quantity;
             try {
-                quantity = BigDecimal.valueOf(Long.parseLong(parts[2].trim()));
+                quantity = new BigDecimal((parts[2].trim()));
             } catch (NumberFormatException e) {
                 throw new RuntimeException("Invalid quantity: " + parts[2], e);
             }
 
-            transactions.add(new FruitTransaction(operation, fruit, quantity));
+            transactions.add(new FruitTransaction(operation, fruit, quantity.intValue()));
         }
         return transactions;
     }

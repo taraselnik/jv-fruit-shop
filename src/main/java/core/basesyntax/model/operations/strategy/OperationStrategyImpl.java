@@ -13,11 +13,14 @@ public class OperationStrategyImpl implements OperationStrategy {
         if (operationHandlers == null) {
             throw new IllegalArgumentException("Operation handlers map can't be null");
         }
-        this.operationHandlers = operationHandlers;
+        this.operationHandlers = Map.copyOf(operationHandlers);
     }
 
     @Override
     public OperationHandler getOperationHandler(FruitTransaction.Operation operation) {
+        if (operationHandlers == null) {
+            throw new IllegalArgumentException("Operation handlers map can't be null");
+        }
         OperationHandler handler = operationHandlers.get(operation);
         if (handler == null) {
             throw new IllegalArgumentException("No handler for operation: " + operation);
