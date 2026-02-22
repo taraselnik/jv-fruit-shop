@@ -16,8 +16,12 @@ import core.basesyntax.service.converter.DataConverterImpl;
 import core.basesyntax.model.transaction.FruitTransaction;
 import core.basesyntax.service.reader.DataReader;
 import core.basesyntax.service.reader.FileReaderImpl;
+import core.basesyntax.service.report.ReportGenerator;
+import core.basesyntax.service.report.ReportGeneratorImpl;
 import core.basesyntax.service.shop.ShopService;
 import core.basesyntax.service.shop.ShopServiceImpl;
+import core.basesyntax.service.writer.FileWriter;
+import core.basesyntax.service.writer.FileWriterImpl;
 
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -52,13 +56,13 @@ public class Main {
     Storage storage = new StorageImpl();
     FruitDao fruitDao = new FruitDaoImpl(storage);
     shopService.process(transactions, fruitDao);
-//
-//    // 5.Generate report based on the current Storage state
-//    ReportGenerator reportGenerator = new ReportGeneratorImpl();
-//    String resultingReport = reportGenerator.getReport();
-//
-//    // 6. Write the received report into the destination file
-//    FileWriter fileWriter = new FileWriterImpl();
-//    fileWriter.write(resultingReport, "finalReport.csv");
+
+    // 5.Generate report based on the current Storage state
+    ReportGenerator reportGenerator = new ReportGeneratorImpl();
+    String resultingReport = reportGenerator.getReport(fruitDao);
+
+    // 6. Write the received report into the destination file
+    FileWriter fileWriter = new FileWriterImpl();
+    fileWriter.write(resultingReport, REPORT_PATH.toString());
   }
 }

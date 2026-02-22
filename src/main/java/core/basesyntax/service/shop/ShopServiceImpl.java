@@ -21,6 +21,12 @@ public class ShopServiceImpl implements ShopService {
   }
   @Override
   public boolean process(List<FruitTransaction> transactions, FruitDao fruitDao) {
+    if (transactions == null) {
+      throw new IllegalArgumentException("Transactions can't be null");
+    }
+    if (fruitDao == null) {
+      throw new IllegalArgumentException("FruitDao can't be null");
+    }
     for (FruitTransaction transaction : transactions) {
       if (transaction == null) {
         continue;

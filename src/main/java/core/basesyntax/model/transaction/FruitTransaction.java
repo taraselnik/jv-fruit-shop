@@ -55,7 +55,9 @@ public class FruitTransaction {
   @Override public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;
     FruitTransaction that = (FruitTransaction) o;
-    return quantity == that.quantity && operation == that.operation && Objects.equals(fruit, that.fruit);
+    return operation == that.operation
+            && Objects.equals(fruit, that.fruit)
+            && Objects.equals(quantity, that.quantity);
   }
 
   @Override public int hashCode() {

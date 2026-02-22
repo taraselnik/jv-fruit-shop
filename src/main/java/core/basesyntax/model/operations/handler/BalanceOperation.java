@@ -9,9 +9,6 @@ public class BalanceOperation implements OperationHandler {
     if (!isValidToApply(initialQuantity, quantity)) {
       return initialQuantity.toString();
     }
-    if (initialQuantity.compareTo(BigDecimal.ZERO) == 0) {
-      return quantity.toString();
-    }
-    return initialQuantity.add(quantity).toString();
+    return quantity.toString();
   }
 }
